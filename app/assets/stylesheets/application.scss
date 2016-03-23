@@ -19,8 +19,13 @@
 
 $font-stack:    'Montserrat', Helvetica, sans-serif;
 $primary-color: #333;
+$th-bg-color: #ececed;
 
 body {
   font: 150% $font-stack;
   color: $primary-color;
+}
+
+tr > th {
+  font-weight: 700;
 }

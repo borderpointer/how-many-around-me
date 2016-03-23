@@ -35,7 +35,7 @@ $(function () {
       }
   });
 
-  function setChart() {
+  function setChartAndTable() {
 
     $.ajax({
       type: "GET",
@@ -44,6 +44,19 @@ $(function () {
       success: function(data){
 
         var receivedData = data;
+
+        // everytime the ajax call is made, empty the tbody so that there are no duplicates
+        $('#table-body').empty();
+
+        for (var i = 0; i < receivedData.length; i++) {
+          $('#table-body').append(
+            "<tr>" +
+            "<td>" + receivedData[i].id + "</td>" +
+            "<td>" + receivedData[i].quantity + "</td>" +
+            "<td>" + dateFormat(receivedData[i].created_at, "mmmm dd, yyyy, h:MM TT") + "</td>" +
+            "</tr>"
+            );
+        }
 
         $('#chart-container').highcharts({
           title: {
@@ -55,7 +68,7 @@ $(function () {
               var newDateData = [];
               for (var i = 0; i < receivedData.length; i++) {
                 console.log(receivedData[i].created_at)
-                newDateData.push(dateFormat(receivedData[i].created_at, "mmmm dS, h:MM TT"))
+                newDateData.push(dateFormat(receivedData[i].created_at, "mmmm, dd yyyy, h:MM TT"))
               }
               return newDateData;
             }())
@@ -94,11 +107,12 @@ $(function () {
       }
     });
   }
-  // create the chart initially so that there is no delay at first
-  setChart();
+
+  // create the chart and table initially so that there is no delay at first
+  setChartAndTable();
 
   setInterval(function(){
-    setChart();
+    setChartAndTable();
   }, 60000);
 
 });

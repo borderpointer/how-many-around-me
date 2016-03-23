@@ -4,24 +4,17 @@
 
 <div class="container-fluid table-responsive" style="width: 85%;">
 
-  <table class="table table-bordered">
+  <table class="table table-bordered table-striped">
 
     <thead>
       <tr>
-        <th>Query #</th>
+        <th>Query ID</th>
         <th>Number of Available Uber Cars</th>
         <th>Date & Time Recorded</th>
       </tr>
     </thead>
 
-    <tbody>
-      <% @cars.each do |car| %>
-        <tr>
-          <td><%= car.id %></td>
-          <td><%= car.quantity %></td>
-          <td><%= car.created_at.strftime("%B %d, %I:%M %p") %></td>
-        </tr>
-      <% end %>
+    <tbody id = "table-body">
     </tbody>
 
   </table>
