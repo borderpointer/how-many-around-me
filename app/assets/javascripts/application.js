@@ -35,44 +35,70 @@ $(function () {
       }
   });
 
-  $.ajax({
-    type: "GET",
-    url: "/api/cars",
-    dataType: 'json',
-    success: function(data){
-      $('#chart-container').highcharts({
-        title: {
-          text: 'Number of Available Uber Cars Near My Apartment',
-            x: -20 //center
-        },
-        xAxis: {
-          categories: [dateFormat(data[0].created_at, "dddd, mmmm dS, yyyy, h:MM:ss TT")]
-        },
-        yAxis: {
+  function setChart() {
+
+    $.ajax({
+      type: "GET",
+      url: "/api/cars",
+      dataType: 'json',
+      success: function(data){
+
+        var receivedData = data;
+
+        $('#chart-container').highcharts({
           title: {
-            text: 'Number of Cars'
-            },
-          plotLines: [{
-            value: 0,
-            width: 1,
-            }]
-        },
-        tooltip: {
-          valueSuffix: ' Cars'
-        },
-        legend: {
-          layout: 'vertical',
-          align: 'right',
-          verticalAlign: 'middle',
-          borderWidth: 0
-        },
-        series: [{
-          name: ' ',
-          color: '#f6f6f6',
-          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-        }]
-      });
-      // options.series[0].setData(data);
-    }
-  });
+            text: 'Number of Available Uber Cars Near My Apartment',
+              x: -20 //center
+          },
+          xAxis: {
+            categories: (function() {
+              var newDateData = [];
+              for (var i = 0; i < receivedData.length; i++) {
+                console.log(receivedData[i].created_at)
+                newDateData.push(dateFormat(receivedData[i].created_at, "mmmm dS, h:MM TT"))
+              }
+              return newDateData;
+            }())
+          },
+          yAxis: {
+            title: {
+              text: 'Number of Cars'
+              },
+            plotLines: [{
+              value: 0,
+              width: 1,
+              }]
+          },
+          tooltip: {
+            valueSuffix: ' Cars'
+          },
+          legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+          },
+          series: [{
+            name: ' ',
+            color: '#f6f6f6',
+            data: (function() {
+              var newQuantityData = [];
+              for (var i = 0; i < receivedData.length; i++) {
+                console.log(receivedData[i].quantity)
+                newQuantityData.push(receivedData[i].quantity)
+              }
+              return newQuantityData;
+            }())
+          }]
+        });
+      }
+    });
+  }
+  // create the chart initially so that there is no delay at first
+  setChart();
+
+  setInterval(function(){
+    setChart();
+  }, 60000);
+
 });

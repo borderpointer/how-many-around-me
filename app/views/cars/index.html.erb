@@ -8,9 +8,9 @@
 
     <thead>
       <tr>
-        <th>#</th>
+        <th>Query #</th>
         <th>Number of Available Uber Cars</th>
-        <th>Date & Time</th>
+        <th>Date & Time Recorded</th>
       </tr>
     </thead>
 
@@ -19,7 +19,7 @@
         <tr>
           <td><%= car.id %></td>
           <td><%= car.quantity %></td>
-          <td><%= car.created_at.strftime("%B %d at %I:%M %p") %></td>
+          <td><%= car.created_at.strftime("%B %d, %I:%M %p") %></td>
         </tr>
       <% end %>
     </tbody>
