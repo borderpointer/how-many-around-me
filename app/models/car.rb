@@ -1,13 +1,12 @@
 class Car < ActiveRecord::Base
 
-  # # Prevent modification of existing records
-  # def readonly?
-  #   !new_record?
-  # end
+  def self.api_call
+    latitude = "40.802439"
+    longitude = "-73.961600"
 
-  # # Prevent objects from being destroyed
-  # def before_destroy
-  #   raise ActiveRecord::ReadOnlyRecord
-  # end
+    response = HTTParty.get("https://api.uber.com/v1/products?latitude=#{latitude}&longitude=#{longitude}", headers: {"Authorization" => "Token #{Rails.application.secrets.uber_server_token}"})
+    @cars = response
+    return @cars.count
+  end
 
 end

@@ -10,6 +10,17 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+$font-stack:    'Montserrat', Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  font: 150% $font-stack;
+  color: $primary-color;
+}
