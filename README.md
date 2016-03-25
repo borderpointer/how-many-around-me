@@ -14,7 +14,7 @@
 
 ### Synopsis
 
-How Many Around Me is a simple app that records how many Uber cars are around my apartment in a 10 minute interval from Uber's API, stores the data into the local database, and charts the data in a graph and table every 30 seconds.
+How Many Around Me is a simple app that records how many Uber cars are around my apartment in an hourly interval from Uber's API, stores the data into the local database, and charts the data in a graph and table every minute.
 
 ### Installation
 
@@ -46,4 +46,4 @@ Live app available [here](http://how-many-around-me.herokuapp.com/)
 
 • run the app: `rails s`
 
-• watch the data come in and the graph and table update every 30 seconds
+• watch the data come in and the graph and table update every minute
