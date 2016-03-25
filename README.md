@@ -1,54 +1,32 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
 # How Many Around Me
 
 ### Ruby Version
 
 - 2.2.3
 
-
 ### Gems Used:
-
-- Postgresql
-- Bootstrap-Sass
-- Angular
-
+- Rails - 4.2
+- Postgresql - 0.15
+- Sass - 5.0
+- Bootstrap-Sass - 3.3.6
+- Httparty - 0.13.7
+- Whenever - 0.9.4
 
 ### Synopsis
 
-Walk Wid Me is a simple app that allows users to go on a virtual walk with a dog. Upon landing, users are shown a random first person dog walking video from the app's database to watch and if they don't like it, they can watch another random first person dog walking video.
-
-
-### Motivation
-
-I wanted to build a simple Rails app that utilizes Angular.js.
-
+How Many Around Me is a simple app that records how many Uber cars are around my apartment in a 10 minute interval from Uber's API, stores the data into the local database, and charts the data in a graph and table every minute.
 
 ### Installation
 
-Beta available: [here](http://walk-wid-me.herokuapp.com/)
+Live app available [here](http://how-many-around-me.herokuapp.com/)
 
+#### To Run the App Locally
+
+• clone this repo in Terminal while in your desired directory: `git clone git@github.com:borderpointer/how-many-around-me.git`
+• cd into the directory: `cd how-many-around-me`
+• install all gem dependencies: `bundle install`
+• to change the location in which it tracks how many cars are available at: go to `car.rb` file and change the variables `latitude` and `longitude` to your desired latitude and longitude coordinates
+• create the local database: `rake db:create`
+• make sure the cron job is working: `whenever --update-crontab`
+• run the app: `rails s`
+• watch the data come in and the graph and table update every minute
