@@ -132,6 +132,6 @@ $(function () {
   // call the function that makes the ajax calls and creates the graph and table at the given interval
   setInterval(function(){
     setChartAndTable();
-  }, 60000);
+  }, 30000);
 
 });
