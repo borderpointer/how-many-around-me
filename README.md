@@ -22,6 +22,10 @@ Live app available [here](http://how-many-around-me.herokuapp.com/)
 
 #### To Run the App Locally
 
+*You must have an account with Uber* <br>
+
+• create a new app with Uber [here](https://developer.uber.com/dashboard/create) and obtain your server token
+
 • clone this repo in Terminal while in your desired directory: `git clone git@github.com:borderpointer/how-many-around-me.git`
 
 • cd into the directory: `cd how-many-around-me`
@@ -31,6 +35,12 @@ Live app available [here](http://how-many-around-me.herokuapp.com/)
 • to change the location in which it tracks how many cars are available at: go to `car.rb` file and change the variables `latitude` and `longitude` to your desired latitude and longitude coordinates
 
 • create the local database: `rake db:create`
+
+• migrate: `rake db:migrate`
+
+• create an environmental variable in Terminal: `export UBER_SERVER_TOKEN='your_server_token'`
+
+• make sure your environmental variable is set: `echo $UBER_SERVER_TOKEN`
 
 • make sure the cron job is working: `whenever --update-crontab`
 
